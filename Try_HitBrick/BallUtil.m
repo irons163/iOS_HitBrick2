@@ -22,9 +22,8 @@ static BitmapUtil* bitmapUtil;
     bool isErrorRightWallDoubleHitFlag;
 }
 
-+(id)initBallUtil:(int)ballLevel speedX:(float)speedX speedY:(float)speedY imageX:(float)imageX imageY:(float)imageY
++ (id)initBallUtil:(int)ballLevel speedX:(float)speedX speedY:(float)speedY imageX:(float)imageX imageY:(float)imageY
            fAngle:(float)fAngle RADIUS:(float)RADIUS{
-//    BallUtil * ball = [BallUtil spriteNodeWithColor:[UIColor redColor] size:CGSizeZero];
     bitmapUtil = [BitmapUtil sharedInstance];
     BallUtil * ball = [BallUtil spriteNodeWithTexture:bitmapUtil.ballTextures[ballLevel]];
     ball->speedX = speedX;

@@ -40,28 +40,28 @@ BitmapUtil * bitmapUtil;
 //}
 
 + (id)initWithBallView:(MyScene *)_ballview {
-    BrickUtil * brick = [BrickUtil spriteNodeWithImageNamed:@"block.png"];
+    BrickUtil * brick = [BrickUtil spriteNodeWithImageNamed:@"block"];
     if (brick) {
-    
-        int blockWidth = [SKSpriteNode spriteNodeWithImageNamed:@"block.png"].size.width;
+        
+        int blockWidth = [SKSpriteNode spriteNodeWithImageNamed:@"block"].size.width;
         float padding = 20.0f;
         // 2 Calculate the xOffset
         float xOffset = 0;
         // 3 Create the blocks and add them to the scene
-//            SKSpriteNode* block = [SKSpriteNode spriteNodeWithImageNamed:@"block.png"];
-//            brick.position = CGPointMake(brick.frame.size.width + xOffset, self.frame.size.height * 0.8f);
-            brick.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:brick.frame.size];
-            brick.physicsBody.allowsRotation = NO;
-            brick.physicsBody.friction = 0.0f;
-            brick.physicsBody.density = 0.0f;
-            brick.name = MyScene.blockCategoryName;
-            brick.physicsBody.categoryBitMask = MyScene.blockCategory;
+        //            SKSpriteNode* block = [SKSpriteNode spriteNodeWithImageNamed:@"block"];
+        //            brick.position = CGPointMake(brick.frame.size.width + xOffset, self.frame.size.height * 0.8f);
+        brick.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:brick.frame.size];
+        brick.physicsBody.allowsRotation = NO;
+        brick.physicsBody.friction = 0.0f;
+        brick.physicsBody.density = 0.0f;
+        brick.name = MyScene.blockCategoryName;
+        brick.physicsBody.categoryBitMask = MyScene.blockCategory;
         brick.physicsBody.dynamic = NO;
         
-//            [self addChild:brick];
+        //            [self addChild:brick];
         
         brick->ballView = _ballview;
-//        brickMaxConfig = [BrickMaxConfig sharedInstance];
+        //        brickMaxConfig = [BrickMaxConfig sharedInstance];
         bitmapUtil = [BitmapUtil sharedInstance];
     }
     return brick;
@@ -76,7 +76,7 @@ BitmapUtil * bitmapUtil;
     self.size = CGSizeMake(right - left, top - bottom);
     self.position = CGPointMake(left+self.size.width/2, top-self.size.height);
     
-//    self.anchorPoint = CGPointMake(0, 1);
+    //    self.anchorPoint = CGPointMake(0, 1);
     self.left = left;
     self.top = top;
     self.right = right;
@@ -138,7 +138,7 @@ BitmapUtil * bitmapUtil;
     } while ([brickMaxConfig isBrickMaxConfigEnable]
              && [brickMaxConfig isBrickOverMax:whichBrickType]);
     
-    bitmap = [SKTexture textureWithImageNamed:@"block.png"];
+    bitmap = [SKTexture textureWithImageNamed:@"block"];
     
     self.texture = bitmap;
     
@@ -148,27 +148,27 @@ BitmapUtil * bitmapUtil;
 
 -(void) setBitmapByBrickType:(int) whichBrickType {
     switch (whichBrickType) {
-		case 0:
-			bitmap = bitmapUtil.brick_once_bmp;
-			break;
-		case 1:
-			bitmap = bitmapUtil.brick_twice_bmp;
-			break;
-		case 2:
-			bitmap = bitmapUtil.brick_three_bmp;
-			break;
-		case 3:
-			bitmap = bitmapUtil.brick_iron_bmp;
-			break;
-		case 4:
-			bitmap = bitmapUtil.brick_time_bmp;
-			break;
-		case 5:
-			bitmap = bitmapUtil.brick_tool_bmp;
-			break;
-		case 6:
-			bitmap = bitmapUtil.brick_ball_level_up_bmp;
-			break;
+        case 0:
+            bitmap = bitmapUtil.brick_once_bmp;
+            break;
+        case 1:
+            bitmap = bitmapUtil.brick_twice_bmp;
+            break;
+        case 2:
+            bitmap = bitmapUtil.brick_three_bmp;
+            break;
+        case 3:
+            bitmap = bitmapUtil.brick_iron_bmp;
+            break;
+        case 4:
+            bitmap = bitmapUtil.brick_time_bmp;
+            break;
+        case 5:
+            bitmap = bitmapUtil.brick_tool_bmp;
+            break;
+        case 6:
+            bitmap = bitmapUtil.brick_ball_level_up_bmp;
+            break;
     }
     
     self.texture = bitmap;
@@ -214,17 +214,17 @@ BitmapUtil * bitmapUtil;
 -(SKTexture*) getNewBrickBmpAfterHit:(int) needHitCount {
     SKTexture* bitmap = nil;
     switch (needHitCount) {
-		case 1:
-			bitmap = bitmapUtil.brick_once_bmp;
-			break;
-		case 2:
-			bitmap = bitmapUtil.brick_twice_bmp;
-			break;
-		case -1:
-			bitmap = bitmapUtil.brick_iron_break_bmp;
-			break;
-		default:
-			break;
+        case 1:
+            bitmap = bitmapUtil.brick_once_bmp;
+            break;
+        case 2:
+            bitmap = bitmapUtil.brick_twice_bmp;
+            break;
+        case -1:
+            bitmap = bitmapUtil.brick_iron_break_bmp;
+            break;
+        default:
+            break;
     }
     return bitmap;
 }

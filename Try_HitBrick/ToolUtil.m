@@ -48,15 +48,15 @@ enum ToolType {
     ToolUtil* tool = [ToolUtil spriteNodeWithTexture:nil];
     if (tool) {
         
-    tool->ballView = mballView;
-    [tool setToolObjectXY:brickUtil.left BrickTop:brickUtil.top BrickRight:brickUtil.right BrickBottom:brickUtil.bottom];
-    [tool setRandomEffectType ];
-    [tool setToolBitmap];
-    tool.isStartDownTool = false;
+        tool->ballView = mballView;
+        [tool setToolObjectXY:brickUtil.left BrickTop:brickUtil.top BrickRight:brickUtil.right BrickBottom:brickUtil.bottom];
+        [tool setRandomEffectType ];
+        [tool setToolBitmap];
+        tool.isStartDownTool = false;
         
-//        tool.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:tool.frame.size];
-//        tool.physicsBody.categoryBitMask = toolCategory;
-//        tool.physicsBody.dynamic = NO;
+        //        tool.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:tool.frame.size];
+        //        tool.physicsBody.categoryBitMask = toolCategory;
+        //        tool.physicsBody.dynamic = NO;
     }
     return tool;
 }
@@ -71,22 +71,22 @@ enum ToolType {
 ////}
 //
 -(void) setRandomEffectType {
-//    int whichType = arc4random_uniform(TYPE_NUM);
-//    EffectType effectTypes[7];
-//    
-//    effectTypes[0] = Once;
-//    effectTypes[1] = Twice;
-//    effectTypes[2] = Three;
-//    effectTypes[3] = Iron;
-//    effectTypes[4] = Time;
-//    effectTypes[5] = Tool;
-//    effectTypes[6] = BallLevelUP;
+    //    int whichType = arc4random_uniform(TYPE_NUM);
+    //    EffectType effectTypes[7];
+    //
+    //    effectTypes[0] = Once;
+    //    effectTypes[1] = Twice;
+    //    effectTypes[2] = Three;
+    //    effectTypes[3] = Iron;
+    //    effectTypes[4] = Time;
+    //    effectTypes[5] = Tool;
+    //    effectTypes[6] = BallLevelUP;
     
     int whichType = arc4random_uniform(13);
     
     enum ToolType toolTypes[13];
     
-//    EffectType *effectTypes = malloc(sizeof(EffectType)*6);
+    //    EffectType *effectTypes = malloc(sizeof(EffectType)*6);
     
     toolTypes[0] = BallSpeedUp;
     toolTypes[1] = BallSpeedDown;
@@ -109,12 +109,12 @@ enum ToolType {
     //			whichToolType = ToolType.BallReset;
     
     if(whichToolType == BlackHole){
-//        int randomBlackHoleMinY = [ballView getBricksAreaBottom ];
-//        int randomBlackHoleMaxY = (int) (ballView.heightScreen - ballView.THICK_OF_STICK - toolRect.height());
-//        int randomBlackHoleY = random.nextInt(randomBlackHoleMaxY - randomBlackHoleMinY +1) + randomBlackHoleMinY;
-//        toolObjTop = randomBlackHoleY;
-//        int randomBlackHoleX = random.nextInt((int) (ballView.widthScreen - toolRect.width()));
-//        toolRect.set(randomBlackHoleX, toolObjTop, randomBlackHoleX + toolRect.width(), toolObjTop + toolRect.height());
+        //        int randomBlackHoleMinY = [ballView getBricksAreaBottom ];
+        //        int randomBlackHoleMaxY = (int) (ballView.heightScreen - ballView.THICK_OF_STICK - toolRect.height());
+        //        int randomBlackHoleY = random.nextInt(randomBlackHoleMaxY - randomBlackHoleMinY +1) + randomBlackHoleMinY;
+        //        toolObjTop = randomBlackHoleY;
+        //        int randomBlackHoleX = random.nextInt((int) (ballView.widthScreen - toolRect.width()));
+        //        toolRect.set(randomBlackHoleX, toolObjTop, randomBlackHoleX + toolRect.width(), toolObjTop + toolRect.height());
     }
 }
 
@@ -123,9 +123,9 @@ enum ToolType {
     int width = height;
     toolObjTop = BrickTop;
     toolObjLeft = (BrickLeft + BrickRight - width) / 2;
-//    toolRect.set(toolObjLeft, toolObjTop, toolObjLeft + width, toolObjTop
-//                 + height);
-   toolRect = CGRectMake(toolObjLeft, toolObjTop, width, height);
+    //    toolRect.set(toolObjLeft, toolObjTop, toolObjLeft + width, toolObjTop
+    //                 + height);
+    toolRect = CGRectMake(toolObjLeft, toolObjTop, width, height);
     self.position = CGPointMake(toolObjLeft, toolObjTop);
     self.size = CGSizeMake(width, height);
 }
@@ -133,48 +133,53 @@ enum ToolType {
 -(void) setToolBitmap{
     BitmapUtil * bitmapUtil = [BitmapUtil sharedInstance];
     switch (whichToolType) {
-		case BallSpeedUp:
-			toolBitmap = bitmapUtil.tool_BallSpeedUp_bmp;
-			break;
-		case BallSpeedDown:
-			toolBitmap = bitmapUtil.tool_BallSpeedDown_bmp;
-			break;
-		case StickLongUp:
-			toolBitmap = bitmapUtil.tool_StickLongUp_bmp;
-			break;
-		case StickLongDown:
-			toolBitmap = bitmapUtil.tool_StickLongDown_bmp;
-			break;
-		case BallCountUpToThree:
-			toolBitmap = bitmapUtil.tool_BallCountUpToThree_bmp;
-			break;
-		case LifeUp:
-			toolBitmap = bitmapUtil.tool_LifeUp_bmp;
-			break;
-		case BallReset:
-			toolBitmap = bitmapUtil.tool_BallReset_bmp;
-			break;
-		case StickLongMax:
-			toolBitmap = bitmapUtil.tool_StickLongMax_bmp;
-			break;
-		case BallRadiusUp:
-			toolBitmap = bitmapUtil.tool_BallRadiusUp_bmp;
-			break;
-		case BallRadiusDown:
-			toolBitmap = bitmapUtil.tool_BallRadiusDown_bmp;
-			break;
-		case BlackHole:
-			toolBitmap = bitmapUtil.tool_BlackHole_bmp;
-			break;
-		case BallLevelUpTwice:
-			toolBitmap = bitmapUtil.tool_BallLevelUpTwice_bmp;
-			break;
-		case BallLevelDownOnce:
-			toolBitmap = bitmapUtil.tool_BallLevelDownOnce_bmp;
-			break;
+        case BallSpeedUp:
+            toolBitmap = bitmapUtil.tool_BallSpeedUp_bmp;
+            break;
+        case BallSpeedDown:
+            toolBitmap = bitmapUtil.tool_BallSpeedDown_bmp;
+            break;
+        case StickLongUp:
+            toolBitmap = bitmapUtil.tool_StickLongUp_bmp;
+            break;
+        case StickLongDown:
+            toolBitmap = bitmapUtil.tool_StickLongDown_bmp;
+            break;
+        case BallCountUpToThree:
+            toolBitmap = bitmapUtil.tool_BallCountUpToThree_bmp;
+            break;
+        case LifeUp:
+            toolBitmap = bitmapUtil.tool_LifeUp_bmp;
+            break;
+        case BallReset:
+            toolBitmap = bitmapUtil.tool_BallReset_bmp;
+            break;
+        case StickLongMax:
+            toolBitmap = bitmapUtil.tool_StickLongMax_bmp;
+            break;
+        case BallRadiusUp:
+            toolBitmap = bitmapUtil.tool_BallRadiusUp_bmp;
+            break;
+        case BallRadiusDown:
+            toolBitmap = bitmapUtil.tool_BallRadiusDown_bmp;
+            break;
+        case BlackHole:
+            toolBitmap = bitmapUtil.tool_BlackHole_bmp;
+            break;
+        case BallLevelUpTwice:
+            toolBitmap = bitmapUtil.tool_BallLevelUpTwice_bmp;
+            break;
+        case BallLevelDownOnce:
+            toolBitmap = bitmapUtil.tool_BallLevelDownOnce_bmp;
+            break;
     }
     
     self.texture = toolBitmap;
+//    SKTexture *texture = toolBitmap;
+//    SKAction *action = [SKAction setTexture:toolBitmap];
+//    SKAction *action = [SKAction animateWithTextures:@[toolBitmap] timePerFrame:0.1];
+//
+//    [self runAction:action];
 }
 
 //-(void) doTool {
@@ -207,76 +212,76 @@ enum ToolType {
 
 -(void) doTool:(NSMutableArray*) ballUtils ball:(BallUtil*) ball showToolEffectTime:(NSMutableArray*)showToolEffectTime {
     switch (whichToolType) {
-		case BallSpeedUp:
-			// ball.setSpeedX(ball.getSpeedX() * 2);
-			// ball.setSpeedY(ball.getSpeedY() * 2);
-			self.ball = ball;
-//			[ballView setBallSpeed(ballView.getBallSpeedX() * 2,
-//                                  ballView.getBallSpeedY() * 2)];
+        case BallSpeedUp:
+            // ball.setSpeedX(ball.getSpeedX() * 2);
+            // ball.setSpeedY(ball.getSpeedY() * 2);
+            self.ball = ball;
+            //			[ballView setBallSpeed(ballView.getBallSpeedX() * 2,
+            //                                  ballView.getBallSpeedY() * 2)];
             [ball setSpeedX:[ball getSpeedX]*2];
             [ball setSpeedY:[ball getSpeedY]*2];
             
-//            [ball.physicsBody applyForce:CGVectorMake([ball getSpeedX]*2, [ball getSpeedY]*2)];
+            //            [ball.physicsBody applyForce:CGVectorMake([ball getSpeedX]*2, [ball getSpeedY]*2)];
             [ball.physicsBody setVelocity:CGVectorMake(ball.physicsBody.velocity.dx*2, ball.physicsBody.velocity.dy*2)];
             
             timerThread = [TimerThread initWithTime:10];
-			[timerThread start];
-			[showToolEffectTime addObject:self];
-			break;
-		case BallSpeedDown:
-			// ball.setSpeedX(ball.getSpeedX() / 2);
-			// ball.setSpeedY(ball.getSpeedY() / 2);
-			self.ball = ball;
-//			ballView.setBallSpeed(ballView.getBallSpeedX() / 2,
-//                                  ballView.getBallSpeedY() / 2);
+            [timerThread start];
+            [showToolEffectTime addObject:self];
+            break;
+        case BallSpeedDown:
+            // ball.setSpeedX(ball.getSpeedX() / 2);
+            // ball.setSpeedY(ball.getSpeedY() / 2);
+            self.ball = ball;
+            //			ballView.setBallSpeed(ballView.getBallSpeedX() / 2,
+            //                                  ballView.getBallSpeedY() / 2);
             [ball setSpeedX:[ball getSpeedX]/2];
             [ball setSpeedY:[ball getSpeedY]/2];
             
-//            [ball.physicsBody applyForce:CGVectorMake([ball getSpeedX]/2, [ball getSpeedY]/2)];
+            //            [ball.physicsBody applyForce:CGVectorMake([ball getSpeedX]/2, [ball getSpeedY]/2)];
             [ball.physicsBody setVelocity:CGVectorMake(ball.physicsBody.velocity.dx/2, ball.physicsBody.velocity.dy/2)];
             
-//			timerThread = new TimerThread(10);
+            //			timerThread = new TimerThread(10);
             timerThread = [TimerThread initWithTime:10];
             [timerThread start];
             [showToolEffectTime addObject:self];
-			break;
-		case StickLongUp:
-			self.ball = ball;
+            break;
+        case StickLongUp:
+            self.ball = ball;
             [ballView setStickLong:[ballView getStickLong]*1.5];
             timerThread = [TimerThread initWithTime:10];
             [timerThread start];
             [showToolEffectTime addObject:self];
-			break;
-		case StickLongDown:
-			self.ball = ball;
+            break;
+        case StickLongDown:
+            self.ball = ball;
             [ballView setStickLong:[ballView getStickLong]*0.5];
             timerThread = [TimerThread initWithTime:10];
             [timerThread start];
             [showToolEffectTime addObject:self];
-			break;
-		case BallCountUpToThree:
-			// ballView.setBallCount(3);
-			for (int i = ballUtils.count; i < 3; i++) {
-//				float angle = ball.getAngle();
-//                
-////				Random random = new Random();
-//				int randomAngle = arc4random_uniform(360);
-//				if (randomAngle < 20 || randomAngle > 340
-//                    || (randomAngle > 160 && randomAngle < 200)) {
-//					randomAngle = 90;
-//				}
-//				if (randomAngle > angle - 5 && randomAngle < angle + 5) {
-//					randomAngle += 10;
-//				}
-//                
-//				float newSpeedX = ballView.getSpeedX((float) randomAngle);
-//				float newSpeedY = ballView.getSpeedY((float) randomAngle);
+            break;
+        case BallCountUpToThree:
+            // ballView.setBallCount(3);
+            for (int i = ballUtils.count; i < 3; i++) {
+                //				float angle = ball.getAngle();
+                //
+                ////				Random random = new Random();
+                //				int randomAngle = arc4random_uniform(360);
+                //				if (randomAngle < 20 || randomAngle > 340
+                //                    || (randomAngle > 160 && randomAngle < 200)) {
+                //					randomAngle = 90;
+                //				}
+                //				if (randomAngle > angle - 5 && randomAngle < angle + 5) {
+                //					randomAngle += 10;
+                //				}
+                //
+                //				float newSpeedX = ballView.getSpeedX((float) randomAngle);
+                //				float newSpeedY = ballView.getSpeedY((float) randomAngle);
                 
                 BallUtil* newBall = [BallUtil initBallUtil:0 speedX:0 speedY:0 imageX:0 imageY:0 fAngle:0 RADIUS:10];
-				[ballUtils addObject:newBall];
+                [ballUtils addObject:newBall];
                 
                 newBall.name = ball.name;
-//                newBall.position = CGPointMake(self.frame.size.width/3, self.frame.size.height/3);
+                //                newBall.position = CGPointMake(self.frame.size.width/3, self.frame.size.height/3);
                 newBall.position = ball.position;
                 //        ball.size = CGSizeMake(50, 50);
                 [ballView addChild:newBall];
@@ -295,112 +300,112 @@ enum ToolType {
                 [newBall.physicsBody applyImpulse:CGVectorMake(10.0f, -10.0f)];
                 newBall.physicsBody.categoryBitMask = ball.physicsBody.categoryBitMask;
                 newBall.physicsBody.contactTestBitMask = ball.physicsBody.contactTestBitMask;
-			}
-			break;
-		case LifeUp:
+            }
+            break;
+        case LifeUp:
             [ballView setBallLife:[ballView getBallLife] + 1];
-			break;
-		case BallReset:
+            break;
+        case BallReset:
             [ballView resetBall];
-//            self.ball = ball;
-//            int ballLevel = ([ball getBallLevel]>1) ? -1:([ball getBallLevel]+1);
-//            [ball setBallLevel:ballLevel];
-			break;
-		case StickLongMax:
-			self.ball = ball;
-			saveStickLong = [ballView getStickLong ];
+            //            self.ball = ball;
+            //            int ballLevel = ([ball getBallLevel]>1) ? -1:([ball getBallLevel]+1);
+            //            [ball setBallLevel:ballLevel];
+            break;
+        case StickLongMax:
+            self.ball = ball;
+            saveStickLong = [ballView getStickLong ];
             [ballView setStickLong:ballView.size.width];
             
-			// time.start();
+            // time.start();
             
             timerThread = [TimerThread initWithTime:10];
             [timerThread start];
             [showToolEffectTime addObject:self];
-			break;
-		case BallRadiusUp:
-			self.ball = ball;
-//			ball.setRadius((int) (ball.getRadius() * 1.5));
+            break;
+        case BallRadiusUp:
+            self.ball = ball;
+            //			ball.setRadius((int) (ball.getRadius() * 1.5));
             ball.xScale = 1.5;
             ball.yScale = 1.5;
             timerThread = [TimerThread initWithTime:10];
             [timerThread start];
             [showToolEffectTime addObject:self];
-			break;
-		case BallRadiusDown:
-			self.ball = ball;
-//			ball.setRadius((int) (ball.getRadius() * 0.5));
+            break;
+        case BallRadiusDown:
+            self.ball = ball;
+            //			ball.setRadius((int) (ball.getRadius() * 0.5));
             ball.xScale = 0.5;
             ball.yScale = 0.5;
             timerThread = [TimerThread initWithTime:10];
             [timerThread start];
             [showToolEffectTime addObject:self];
-			break;
-		case BlackHole:
-			self.ball = ball;
+            break;
+        case BlackHole:
+            self.ball = ball;
             [ball setBallLevel:-5];
-			break;
+            break;
         case BallLevelUpTwice:{
-			self.ball = ball;
-//            NSString *a = nil;
-//            NSString* a; = 1<2 ? 0:1;
+            self.ball = ball;
+            //            NSString *a = nil;
+            //            NSString* a; = 1<2 ? 0:1;
             int ballLevel = ([ball getBallLevel]>0) ? -1:([ball getBallLevel]+2);
-			[ball setBallLevel:ballLevel];
-			break;
+            [ball setBallLevel:ballLevel];
+            break;
         }case BallLevelDownOnce:
-			self.ball = ball;
-			[ball setBallLevel:[ball getBallLevel]-1];
-			break;
+            self.ball = ball;
+            [ball setBallLevel:[ball getBallLevel]-1];
+            break;
     }
 }
 
 -(void) doToolFinish {
     if (self.ball != nil) {
         switch (whichToolType) {
-			case BallSpeedUp:
-//				ball.setSpeedX(ball.getSpeedX() / 2);
-//				ball.setSpeedY(ball.getSpeedY() / 2);
+            case BallSpeedUp:
+                //				ball.setSpeedX(ball.getSpeedX() / 2);
+                //				ball.setSpeedY(ball.getSpeedY() / 2);
                 [self.ball setSpeedX:[self.ball getSpeedX]/2];
                 [self.ball setSpeedY:[self.ball getSpeedY]/2];
                 
-//                [self.ball.physicsBody applyForce:CGVectorMake([self.ball getSpeedX]/2, [self.ball getSpeedY]/2)];
+                //                [self.ball.physicsBody applyForce:CGVectorMake([self.ball getSpeedX]/2, [self.ball getSpeedY]/2)];
                 [self.ball.physicsBody setVelocity:CGVectorMake(self.ball.physicsBody.velocity.dx/2, self.ball.physicsBody.velocity.dy/2)];
                 break;
-			case BallSpeedDown:
+            case BallSpeedDown:
                 [self.ball setSpeedX:[self.ball getSpeedX]*2];
                 [self.ball setSpeedY:[self.ball getSpeedY]*2];
                 
-//                [self.ball.physicsBody applyForce:CGVectorMake([self.ball getSpeedX]*2, [self.ball getSpeedY]*2)];
+                //                [self.ball.physicsBody applyForce:CGVectorMake([self.ball getSpeedX]*2, [self.ball getSpeedY]*2)];
                 [self.ball.physicsBody setVelocity:CGVectorMake(self.ball.physicsBody.velocity.dx*2, self.ball.physicsBody.velocity.dy*2)];
                 break;
-			case StickLongUp:
+            case StickLongUp:
                 [ballView setStickLong:(int) ([ballView getStickLong] * 0.67)];
-				break;
-			case StickLongDown:
-				[ballView setStickLong:(int) ([ballView getStickLong] * 2)];
-				break;
-			case StickLongMax:
-				if(saveStickLong>ballView.size.width-10){
+                break;
+            case StickLongDown:
+                [ballView setStickLong:(int) ([ballView getStickLong] * 2)];
+                break;
+            case StickLongMax:
+                if(saveStickLong>ballView.size.width-10){
                     [ballView setStickLong:ballView.size.width/2];
-				}else{
+                }else{
                     [ballView setStickLong:saveStickLong];
-				}
-				break;
-			case BallRadiusUp:
-//				ball.setRadius((int) (ball.getRadius() * 0.67));
+                }
+                break;
+            case BallRadiusUp:
+                //				ball.setRadius((int) (ball.getRadius() * 0.67));
                 self.ball.xScale = 1;
                 self.ball.yScale = 1;
-				break;
-			case BallRadiusDown:
-//				ball.setRadius((int) (ball.getRadius() * 2));
+                break;
+            case BallRadiusDown:
+                //				ball.setRadius((int) (ball.getRadius() * 2));
                 self.ball.xScale = 1;
                 self.ball.yScale = 1;
-				break;
+                break;
         }
     }
 }
 
 -(CGRect) getToolRect {
-//    return toolRect;
+    //    return toolRect;
     return toolRect;
 }
 
@@ -410,7 +415,7 @@ enum ToolType {
 
 -(void) moveDownToolObj{
     if(whichToolType != BlackHole){
-//        toolRect.offset(0, TOOL_DOWN_SPEED);
+        //        toolRect.offset(0, TOOL_DOWN_SPEED);
         self.position = CGPointMake(self.position.x, self.position.y - 2);
     }
 }

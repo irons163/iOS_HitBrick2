@@ -17,7 +17,7 @@
     if(self = [super init]){
         
         self.bar = [SKTexture textureWithImageNamed:@"bar"];
-    
+        
         self.brick_once_bmp=[SKTexture textureWithImageNamed:@"brick01"];
         self.brick_twice_bmp=[SKTexture textureWithImageNamed:@"brick02"];
         self.brick_three_bmp=[SKTexture textureWithImageNamed:@"brick03"];

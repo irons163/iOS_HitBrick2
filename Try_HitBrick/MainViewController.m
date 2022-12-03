@@ -19,9 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    GameCenterUtil * gameCenterUtil = [GameCenterUtil sharedInstance];
-    //    gameCenterUtil.delegate = self;
+
+    GameCenterUtil *gameCenterUtil = [GameCenterUtil sharedInstance];
     [gameCenterUtil isGameCenterAvailable];
     [gameCenterUtil authenticateLocalUser:self];
     [gameCenterUtil submitAllSavedScores];

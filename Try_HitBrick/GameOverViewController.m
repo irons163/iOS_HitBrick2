@@ -73,7 +73,7 @@ typedef void (^okBlock)();
         DatabaseManager* manager = [DatabaseManager sharedInstance];
         [manager insertWithName:name withScore:gameScore];
         
-        UIAlertView * alerView = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         
         self.gameOverTitleLabel.hidden = YES;
         self.gameScoreLabel.hidden = YES;
@@ -89,7 +89,7 @@ typedef void (^okBlock)();
     [self.gameDelegate restart];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+ -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }

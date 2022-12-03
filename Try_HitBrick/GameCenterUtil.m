@@ -7,7 +7,6 @@
 //
 
 #import "GameCenterUtil.h"
-//#import "CommonUtil.h"
 
 static GameCenterUtil* instance;
 
@@ -88,22 +87,20 @@ static GameCenterUtil* instance;
 }
 
 //用户变更检测
-- (void)registerFoeAuthenticationNotification{
+- (void)registerFoeAuthenticationNotification {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(authenticationChanged) name:GKPlayerAuthenticationDidChangeNotificationName object:nil];
 }
 
-- (void)authenticationChanged{
-    if([GKLocalPlayer localPlayer].isAuthenticated ){
+- (void)authenticationChanged {
+    if ([GKLocalPlayer localPlayer].isAuthenticated) {
         NSLog(@"Authentication changed: player authenticated.");
-//        userAuthenticated = TRUE;
-    }else{
+    } else {
         NSLog(@"Authentication changed: player not authenticated");
-//        userAuthenticated = FALSE;
     }
 }
 
-- (void) reportScore: (int64_t) score forCategory: (NSString*) category{
+- (void)reportScore:(int64_t) score forCategory: (NSString *) category{
     GKScore *scoreReporter = [[GKScore alloc] initWithCategory:category];
     
     scoreReporter.value = score;
@@ -116,7 +113,7 @@ static GameCenterUtil* instance;
         }else{
             NSLog(@"提交成功");
         }
-//        [CommonUtil resetGameRecoder:[CommonUtil sharedInstance]];
+        //        [CommonUtil resetGameRecoder:[CommonUtil sharedInstance]];
     }];
 }
 
@@ -127,8 +124,7 @@ static GameCenterUtil* instance;
     [[NSUserDefaults standardUserDefaults] setObject:savedScoresArray forKey:@"savedScores"];
 }
 
-//重新提交分数
-- (void)submitAllSavedScores{
+- (void)submitAllSavedScores {
     NSMutableArray *savedScoreArray = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"savedScores"]];
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedScores"];
@@ -139,11 +135,8 @@ static GameCenterUtil* instance;
         [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
             if(error != nil){
                 NSData *saveSocreData = [NSKeyedArchiver archivedDataWithRootObject:scoreReporter];
-                //未能提交得分，需要保存下来后继续提交
                 [self storeScoreForLater:saveSocreData];
             }else{
-                NSLog(@"提交成功");
-                
                 
             }
         }];
@@ -166,7 +159,7 @@ static GameCenterUtil* instance;
     }
 }
 
-- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController{
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController  {
     [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

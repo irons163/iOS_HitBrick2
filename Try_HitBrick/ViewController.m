@@ -14,7 +14,7 @@
 
 extern const int MAX_LEVEL;
 
-@implementation ViewController{
+@implementation ViewController {
     MyScene * scene;
     WinDialogViewController * winDialogViewController;
     GameOverViewController* gameOverViewController;
@@ -32,53 +32,74 @@ static int screenHeight;
 //public static Object Lock = new Object();
 int level;
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        self.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    return self;
+}
+
 -(void)handleMsg:(int)msgWhat{
-//        switch (msgWhat) {
-//            case 0:
-//                onBackPressed();
-//                break;
-//            case 1:
-//                scoreTextView.setText(myView.score + "");
-//                break;
-//            case 2:
-//                increaseScroeTextView.setText(" +" + myView.increaseScroe + "");
-//                myView.increaseScroe = 0;
-//                // animationSet.startNow();
-//                increaseScroeTextView.startAnimation(animationSet);
-//                break;
-//            case 3:
-//                gameLevelTextView.setText(myView.playGameLevel + 1 + "");
-//                break;
-//            case 4:
-//                gameLifeTextView.setText(myView.ballLife + "");
-//                break;
-//            case 5:
-//                comboTextView.setText("COMBO X " + msg.arg1);
-//                // mAnimationReSize.startNow();
-//                comboTextView.startAnimation(mAnimationReSize);
-//                break;
-//            case 6:
-//                myView = new BallView(MainActivity.this, msg.arg1);
-//                playGameLevel = msg.arg1;
-//                setGameView();
-//                break;
-//            case 7:
-//                String changeBallLifeString;
-//                if (msg.arg1 >= 0)
-//                    changeBallLifeString = "+" + msg.arg1;
-//                else
-//                    changeBallLifeString = "" + msg.arg1;
-//                changeBallLifeTextView.setText(" " + changeBallLifeString + "");
-//                // animationSet2.startNow();
-//                changeBallLifeTextView.startAnimation(animationSet2);
-//                break;
-//        }
+    //        switch (msgWhat) {
+    //            case 0:
+    //                onBackPressed();
+    //                break;
+    //            case 1:
+    //                scoreTextView.setText(myView.score + "");
+    //                break;
+    //            case 2:
+    //                increaseScroeTextView.setText(" +" + myView.increaseScroe + "");
+    //                myView.increaseScroe = 0;
+    //                // animationSet.startNow();
+    //                increaseScroeTextView.startAnimation(animationSet);
+    //                break;
+    //            case 3:
+    //                gameLevelTextView.setText(myView.playGameLevel + 1 + "");
+    //                break;
+    //            case 4:
+    //                gameLifeTextView.setText(myView.ballLife + "");
+    //                break;
+    //            case 5:
+    //                comboTextView.setText("COMBO X " + msg.arg1);
+    //                // mAnimationReSize.startNow();
+    //                comboTextView.startAnimation(mAnimationReSize);
+    //                break;
+    //            case 6:
+    //                myView = new BallView(MainActivity.this, msg.arg1);
+    //                playGameLevel = msg.arg1;
+    //                setGameView();
+    //                break;
+    //            case 7:
+    //                String changeBallLifeString;
+    //                if (msg.arg1 >= 0)
+    //                    changeBallLifeString = "+" + msg.arg1;
+    //                else
+    //                    changeBallLifeString = "" + msg.arg1;
+    //                changeBallLifeTextView.setText(" " + changeBallLifeString + "");
+    //                // animationSet2.startNow();
+    //                changeBallLifeTextView.startAnimation(animationSet2);
+    //                break;
+    //        }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
@@ -86,7 +107,7 @@ int level;
     
     // Create and configure the scene.
     scene = [MyScene initWithSize:skView.bounds.size playGameLevel:1 withViewController:self];
-//    SKScene * scene = [BreakoutGameScene sceneWithSize:skView.bounds.size];
+    //    SKScene * scene = [BreakoutGameScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.gameDelegate = self;
     // Present the scene.
@@ -158,58 +179,49 @@ int level;
     [self presentViewController:gameOverViewController animated:YES completion:nil];
 }
 
--(void)goToMenu{
-    //    gameFlag = false;
-    if(winDialogViewController!=nil){
+- (void)goToMenu {
+    if (winDialogViewController != nil) {
         [winDialogViewController dismissViewControllerAnimated:true completion:nil];
         winDialogViewController = nil;
         [self dismissViewControllerAnimated:YES completion:nil];
-        //        [self.navigationController popViewControllerAnimated:YES];
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-    }else{
-//        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
         [gameOverViewController dismissViewControllerAnimated:true completion:nil];
         gameOverViewController = nil;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
--(void)goToNextLevel{
+- (void)goToNextLevel {
     SKTexture* nextBackground;
     
     if (level + 1 < MAX_LEVEL) {
-//        nextBackground = [TextureHelper bgTextures][level + 1];
+        
     } else if (level + 1 == MAX_LEVEL) {
-//        nextBackground = [TextureHelper bgTextures][level + 1];
+        
     }
     
-    SKView * skView = (SKView *)self.view;
+    SKView *skView = (SKView *)self.view;
     
-    // Create and configure the scene.
     scene = [MyScene initWithSize:skView.bounds.size playGameLevel:level+1 withViewController:self];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.gameDelegate = self;
     
     skView.showsFPS = NO;
     skView.showsNodeCount = NO;
-    
-    // Present the scene.
     [skView presentScene:scene];
-    
-    if(winDialogViewController){
+     
+    if (winDialogViewController) {
         [winDialogViewController dismissViewControllerAnimated:true completion:nil];
         winDialogViewController = nil;
-    }else if(gameOverViewController){
+    } else if (gameOverViewController) {
         [gameOverViewController dismissViewControllerAnimated:true completion:nil];
         gameOverViewController = nil;
     }
     
     level++;
-    
-//    [];
 }
 
--(void)restart{
+- (void)restart {
     level--;
     [self goToNextLevel];
     

@@ -19,10 +19,11 @@
 @property bool isStartDownTool;
 @property BallUtil * ball;
 
-+(instancetype)initWithBallView:(MyScene*) ballView BrickUtil:(BrickUtil*) brickUtil;
--(void) moveDownToolObj;
--(void) doTool:(NSMutableArray*) ballUtils ball:(BallUtil*) ball showToolEffectTime:(NSMutableArray*)showToolEffectTime;
--(void) doToolFinish;
--(TimerThread*) getToolTimerThread;
--(SKTexture*)getToolBitmap;
++ (instancetype)initWithBallView:(MyScene*) ballView BrickUtil:(BrickUtil *) brickUtil;
+- (void)moveDownToolObj;
+- (void)doTool:(NSMutableArray*) ballUtils ball:(BallUtil *) ball showToolEffectTime:(NSMutableArray*)showToolEffectTime;
+- (void)doToolFinish;
+- (TimerThread *) getToolTimerThread;
+- (SKTexture*)getToolBitmap;
+
 @end

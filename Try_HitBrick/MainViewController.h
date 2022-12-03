@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController
+
 - (IBAction)startClick:(id)sender;
 - (IBAction)leaderboardClick:(id)sender;
 

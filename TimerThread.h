@@ -10,8 +10,9 @@
 
 @interface TimerThread : NSObject
 
-+(instancetype)initWithTime:(int)time;
--(int) getCurrentTime;
--(void) setCurrentTime:(int) time;
--(void)start;
++ (instancetype)initWithTime:(int)time;
+- (int) getCurrentTime;
+- (void) setCurrentTime:(int) time;
+- (void)start;
+
 @end

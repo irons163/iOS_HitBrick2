@@ -8,9 +8,23 @@
 
 #import "BrickMaxConfig.h"
 
+static int Brick_Once_MAX;
+static int Brick_Twice_MAX;
+static int Brick_Three_MAX;
+static int Brick_Iron_MAX;
+static int Brick_Time_MAX;
+static int Brick_Tool_MAX;
+static int Brick_BallLevelUP_MAX;
+
+static int bricksMax[7];
+
+//static bool brickMaxConfigEnable = false;
+
+// private int
+
+static BrickMaxConfig* instance;
+
 @implementation BrickMaxConfig{
-//    int* bricksMax;
-}
 
 //static int LV2_Brick_Twice_MAX = 6;
 //static int LV2_Brick_Tool_MAX = 7;
@@ -34,41 +48,28 @@
 //static int LV5_Brick_Tool_MAX = 3;
 //static int LV5_Brick_BallLevelUP_MAX = 3;
 
-static int Brick_Once_MAX;
-static int Brick_Twice_MAX;
-static int Brick_Three_MAX;
-static int Brick_Iron_MAX;
-static int Brick_Time_MAX;
-static int Brick_Tool_MAX;
-static int Brick_BallLevelUP_MAX;
 
-static int bricksMax[7];
-
-//static bool brickMaxConfigEnable = false;
-
-// private int
-
-static BrickMaxConfig* instance;
+}
 
 -(id)init{
     if(self = [super init]){
         /// way 1
-//        static const int data[] = {1, 2, 3, 4, 5};
-//        
-//        bricksMax = malloc(sizeof(data));
-//        memcpy(bricksMax, data, sizeof(data));
+        //        static const int data[] = {1, 2, 3, 4, 5};
+        //
+        //        bricksMax = malloc(sizeof(data));
+        //        memcpy(bricksMax, data, sizeof(data));
         
         /// way 2
-//        bricksMax = malloc(sizeof(int)*5);
-//        memcpy(bricksMax, (int[]){1,2,3,4,5}, sizeof(int)*5);
-//        
-//        bricksMax[0] = 1;
-//        bricksMax[1] = 2;
+        //        bricksMax = malloc(sizeof(int)*5);
+        //        memcpy(bricksMax, (int[]){1,2,3,4,5}, sizeof(int)*5);
+        //
+        //        bricksMax[0] = 1;
+        //        bricksMax[1] = 2;
         
         
         //bricksMax = {1,2,3};
-//        bricksMax[0] = 1;
-//        bricksMax[1] = 2;
+        //        bricksMax[0] = 1;
+        //        bricksMax[1] = 2;
         
         self.LV2_Brick_Twice_MAX = 6;
         self.LV2_Brick_Tool_MAX = 7;
@@ -114,32 +115,32 @@ static BrickMaxConfig* instance;
 
 -(void) setBrickMaxBy:(int) playGameLevel {
     switch (playGameLevel) {
-		case 1:
-			Brick_Twice_MAX = self.LV2_Brick_Twice_MAX;
-			Brick_Tool_MAX = self.LV2_Brick_Tool_MAX;
-			Brick_BallLevelUP_MAX = self.LV2_Brick_BallLevelUP_MAX;
-			break;
-		case 2:
-			Brick_Three_MAX = self.LV3_Brick_Three_MAX;
-			Brick_Iron_MAX = self.LV3_Brick_Iron_MAX;
-			Brick_Tool_MAX = self.LV3_Brick_Tool_MAX;
-			Brick_BallLevelUP_MAX = self.LV3_Brick_BallLevelUP_MAX;
-			break;
-		case 3:
-			Brick_Twice_MAX = self.LV4_Brick_Twice_MAX;
-			Brick_Three_MAX = self.LV4_Brick_Three_MAX;
-			Brick_Time_MAX = self.LV4_Brick_Time_MAX;
-			Brick_Tool_MAX = self.LV4_Brick_Tool_MAX;
-			Brick_BallLevelUP_MAX = self.LV4_Brick_BallLevelUP_MAX;
-			break;
-		case 4:
-			Brick_Twice_MAX = self.LV5_Brick_Twice_MAX;
-			Brick_Three_MAX = self.LV5_Brick_Three_MAX;
-			Brick_Iron_MAX = self.LV5_Brick_Iron_MAX;
-			Brick_Time_MAX = self.LV5_Brick_Time_MAX;
-			Brick_Tool_MAX = self.LV5_Brick_Tool_MAX;
-			Brick_BallLevelUP_MAX = self.LV5_Brick_BallLevelUP_MAX;
-			break;
+        case 1:
+            Brick_Twice_MAX = self.LV2_Brick_Twice_MAX;
+            Brick_Tool_MAX = self.LV2_Brick_Tool_MAX;
+            Brick_BallLevelUP_MAX = self.LV2_Brick_BallLevelUP_MAX;
+            break;
+        case 2:
+            Brick_Three_MAX = self.LV3_Brick_Three_MAX;
+            Brick_Iron_MAX = self.LV3_Brick_Iron_MAX;
+            Brick_Tool_MAX = self.LV3_Brick_Tool_MAX;
+            Brick_BallLevelUP_MAX = self.LV3_Brick_BallLevelUP_MAX;
+            break;
+        case 3:
+            Brick_Twice_MAX = self.LV4_Brick_Twice_MAX;
+            Brick_Three_MAX = self.LV4_Brick_Three_MAX;
+            Brick_Time_MAX = self.LV4_Brick_Time_MAX;
+            Brick_Tool_MAX = self.LV4_Brick_Tool_MAX;
+            Brick_BallLevelUP_MAX = self.LV4_Brick_BallLevelUP_MAX;
+            break;
+        case 4:
+            Brick_Twice_MAX = self.LV5_Brick_Twice_MAX;
+            Brick_Three_MAX = self.LV5_Brick_Three_MAX;
+            Brick_Iron_MAX = self.LV5_Brick_Iron_MAX;
+            Brick_Time_MAX = self.LV5_Brick_Time_MAX;
+            Brick_Tool_MAX = self.LV5_Brick_Tool_MAX;
+            Brick_BallLevelUP_MAX = self.LV5_Brick_BallLevelUP_MAX;
+            break;
     }
     
     bricksMax[0] = Brick_Once_MAX;
@@ -150,9 +151,9 @@ static BrickMaxConfig* instance;
     bricksMax[5] = Brick_Tool_MAX;
     bricksMax[6] = Brick_BallLevelUP_MAX;
     
-//    bricksMax = { Brick_Once_MAX, Brick_Twice_MAX,
-//        Brick_Three_MAX, Brick_Iron_MAX, Brick_Time_MAX,
-//        Brick_Tool_MAX, Brick_BallLevelUP_MAX };
+    //    bricksMax = { Brick_Once_MAX, Brick_Twice_MAX,
+    //        Brick_Three_MAX, Brick_Iron_MAX, Brick_Time_MAX,
+    //        Brick_Tool_MAX, Brick_BallLevelUP_MAX };
 }
 
 -(bool) isBrickOverMax:(int) whichBrickType {

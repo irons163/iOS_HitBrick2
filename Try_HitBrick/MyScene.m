@@ -37,7 +37,7 @@ const uint32_t toolCategory = 0x1 << 4; // 00000000000000000000000000010000
 @end
 
 @implementation MyRect
-+(MyRect *)RectMakeL:(int)left T:(int)top R:(int)right B:(int)bottom{
++ (MyRect *)RectMakeL:(int)left T:(int)top R:(int)right B:(int)bottom{
     MyRect* rect = [MyRect new];
     rect.left = left;
     rect.top = top;
@@ -53,8 +53,8 @@ const uint32_t toolCategory = 0x1 << 4; // 00000000000000000000000000010000
 
 @end
 
-@implementation MyScene{
-    BrickUtil* rBrick[N][N];
+@implementation MyScene {
+    BrickUtil *rBrick[N][N];
     int iNumBricks;
     bool bRbOn[N][N];
     int playGameLevel;
@@ -168,7 +168,7 @@ static bool gameFlag = true;
     if (self = [super initWithSize:size]) {
         [self initGame];
         
-        SKSpriteNode* background = [SKSpriteNode spriteNodeWithImageNamed:@"bg.png"];
+        SKSpriteNode* background = [SKSpriteNode spriteNodeWithImageNamed:@"bg"];
         background.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         [self addChild:background];
         
@@ -183,7 +183,7 @@ static bool gameFlag = true;
         
 
         
-        paddle = [[SKSpriteNode alloc] initWithImageNamed: @"paddle.png"];
+        paddle = [[SKSpriteNode alloc] initWithImageNamed: @"paddle"];
         paddle.name = paddleCategoryName;
         paddleOriginalSize = paddle.size;
         paddle.position = CGPointMake(CGRectGetMidX(self.frame), paddle.frame.size.height * 0.6f);
@@ -215,7 +215,7 @@ static bool gameFlag = true;
         
         // 1 Store some useful variables
         int numberOfBlocks = 3;
-        int blockWidth = [SKSpriteNode spriteNodeWithImageNamed:@"block.png"].size.width;
+        int blockWidth = [SKSpriteNode spriteNodeWithImageNamed:@"block"].size.width;
         float padding = 20.0f;
         // 2 Calculate the xOffset
         float xOffset = (self.frame.size.width - (blockWidth * numberOfBlocks + padding * (numberOfBlocks-1))) / 2;
@@ -871,9 +871,9 @@ static bool gameFlag = true;
     gameFlag = false;
     waitGameSuccessProcessing = true;
     lastTimeCount = count;
-    [self setPaused:true];
-//    paddle.userInteractionEnabled = false;
-//    [self.gameDelegate showWinDialog];
+//    [self setPaused:true];
+    paddle.userInteractionEnabled = false;
+    [self.gameDelegate showWinDialog];
 }
 
 -(void) showWinView{
@@ -1236,7 +1236,7 @@ int lastTimeCount;
     }
     
     // 1
-    //        SKSpriteNode* ball = [SKSpriteNode spriteNodeWithImageNamed: @"ball.png"];
+    //        SKSpriteNode* ball = [SKSpriteNode spriteNodeWithImageNamed: @"ball"];
     // 固定產生球的位置於擊板的上方
     
     imageX = widthScreen / 2;

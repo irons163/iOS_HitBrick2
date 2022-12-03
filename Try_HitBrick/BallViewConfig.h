@@ -14,6 +14,6 @@
 @property bool waitGameSuccessProcessing;
 @property bool GAME_PAUSE_FLAG;
 
-+(id)sharedInstance;
++ (id)sharedInstance;
 
 @end

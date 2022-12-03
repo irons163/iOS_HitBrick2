@@ -75,7 +75,7 @@ int timeCount = TIME_EFFECT_COUNT;
 -(void)setEffect:(int) whichType {
     EffectType *effectTypes = malloc(sizeof(EffectType)*6);
     
-//    EffectType effectTypes[7];
+    //    EffectType effectTypes[7];
     
     effectTypes[0] = Once;
     effectTypes[1] = Twice;
@@ -85,31 +85,31 @@ int timeCount = TIME_EFFECT_COUNT;
     effectTypes[5] = Tool;
     effectTypes[6] = BallLevelUP;
     
-//    free(effectTypes);
+    //    free(effectTypes);
     
     whichEffectType = effectTypes[whichType];
     switch (whichEffectType) {
-		case Once:
-			needHitCount = 1;
-			break;
-		case Twice:
-			needHitCount = 2;
-			break;
-		case Three:
-			needHitCount = 3;
-			break;
-		case Iron:
-			needHitCount = -2;
-			break;
-		case Time:
-			needHitCount = 1;
-			break;
-		case Tool:
-			needHitCount = 1;
-			break;
-		case BallLevelUP:
-			needHitCount = 1;
-			break;
+        case Once:
+            needHitCount = 1;
+            break;
+        case Twice:
+            needHitCount = 2;
+            break;
+        case Three:
+            needHitCount = 3;
+            break;
+        case Iron:
+            needHitCount = -2;
+            break;
+        case Time:
+            needHitCount = 1;
+            break;
+        case Tool:
+            needHitCount = 1;
+            break;
+        case BallLevelUP:
+            needHitCount = 1;
+            break;
     }
 }
 
@@ -117,27 +117,27 @@ int timeCount = TIME_EFFECT_COUNT;
 -(void) doEffect:(BallUtil*) ball show:(NSMutableArray*)showTimeBrickEffectTime {
     self->ball = ball;
     switch (whichEffectType) {
-		case Once:
-		case Twice:
-		case Three:
-			[self doHitDetermine];
-			break;
-		case Iron:
-			[self doHitIronDetermine];
-			break;
-		case Time:
-			[self doHitDetermine];
+        case Once:
+        case Twice:
+        case Three:
+            [self doHitDetermine];
+            break;
+        case Iron:
+            [self doHitIronDetermine];
+            break;
+        case Time:
+            [self doHitDetermine];
             [self doTimeCountEffect:(NSMutableArray*)showTimeBrickEffectTime];
-			break;
-		case Tool:
-			[self doHitDetermine];
+            break;
+        case Tool:
+            [self doHitDetermine];
             [self setToolEffect];
             [self startDownTool];
-			break;
-		case BallLevelUP:
-			[self doHitDetermine];
+            break;
+        case BallLevelUP:
+            [self doHitDetermine];
             [self doBallLevelUPEffect:(BallUtil*)ball];
-			break;
+            break;
     }
 }
 
@@ -246,17 +246,5 @@ int timeCount = TIME_EFFECT_COUNT;
 -(void) startDownTool {
     toolUtil.isStartDownTool = true;
 }
-
-// class EffectOnce{
-//
-// private final static EffectOnce II = new EffectOnce();
-//
-// private EffectOnce(){}
-//
-// public static EffectOnce getInstance(){
-// return EFFECTONCE;
-// }
-//
-// }
 
 @end
